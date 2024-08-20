@@ -278,45 +278,6 @@ class DemoScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             // Card with Border, Dropdown, and Details
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.grey), // Visible border
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Red',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: "Roboto",
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.arrow_drop_down),
-                            onPressed: () {
-                              // Logic for showing the dropdown content
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) => _buildDropdownContent(),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -325,67 +286,61 @@ class DemoScreen extends ConsumerWidget {
 
   Widget _buildDropdownContent() {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Beans and Lentiles',
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: "Roboto",
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            '146 kcal',
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: "Roboto",
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Brand',
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: "Roboto",
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Food Functionality',
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: "Roboto",
+              color: Colors.purple,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
             children: [
-              const Text(
-                'Beans and Lentiles',
-                style: TextStyle(fontSize: 18, fontFamily: "Roboto"),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                '146 kcal',
-                style: TextStyle(fontSize: 16, fontFamily: "Roboto"),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Brand',
-                style: TextStyle(fontSize: 16, fontFamily: "Roboto"),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'food Functionality',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "Roboto",
-                  color: Colors.purple, // Violet color
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildSmallCard('A', '85/100', Colors.blue),
-                  _buildSmallCard('GL', '5', Colors.green),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Icon(
-                  Icons.favorite,
-                  color: Colors.purple, // Violet color for love icon
-                ),
-              ),
+              _buildSmallCard('A', '85/100'),
+              const SizedBox(width: 8),
+              _buildSmallCard('GL', '5'),
             ],
           ),
-        ),
+          const SizedBox(height: 8),
+          const Icon(Icons.favorite, color: Colors.purple),
+        ],
       ),
     );
   }
 
-  Widget _buildSmallCard(String letter, String value, Color bgColor) {
+  Widget _buildSmallCard(String title, String value) {
     return Card(
+      color: Colors.grey[200], // Background color of the small card
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.grey),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
@@ -393,16 +348,23 @@ class DemoScreen extends ConsumerWidget {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: bgColor,
+              backgroundColor: Colors.grey, // Circle background color
+              radius: 12,
               child: Text(
-                letter,
-                style: const TextStyle(color: Colors.white),
+                title,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                ),
               ),
             ),
             const SizedBox(width: 8),
             Text(
               value,
-              style: const TextStyle(fontSize: 16, fontFamily: "Roboto"),
+              style: const TextStyle(
+                fontSize: 12,
+                fontFamily: "Roboto",
+              ),
             ),
           ],
         ),
